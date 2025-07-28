@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Painel Administrativo - Feirantes SADE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    #container {
+      background: rgba(255 255 255 / 0.12);
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 1000px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(30, 60, 114, 0.7);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      display: flex;
+      flex-direction: column;
+      min-height: 550px;
+    }
+    h1, h2 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 30px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    /* LOGIN */
+    #login-section {
+      max-width: 400px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      outline: none;
+      background: rgba(255 255 255 / 0.25);
+      color: #fff;
+      transition: background-color 0.3s ease;
+      letter-spacing: 1px;
+    }
+    input::placeholder {
+      color: #d0d0d0;
+    }
+    input:focus {
+      background: rgba(255 255 255 / 0.45);
+    }
+    button {
+      padding: 15px 20px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 700;
+      font-size: 1.2rem;
+      background-color: #4a7ef5;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(74, 126, 245, 0.7);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      letter-spacing: 1.5px;
+      user-select: none;
+    }
+    button:hover {
+      background-color: #3a63d8;
+      box-shadow: 0 8px 28px rgba(58, 99, 216, 0.9);
+      transform: translateY(-2px);
+    }
+    .error-msg {
+      background: #ff4d4f;
+      padding: 12px 0;
+      border-radius: 14px;
+      font-weight: 600;
+      letter-spacing: 0.7px;
+      user-select: none;
+      text-align: center;
+      display: none;
+      box-shadow: 0 0 8px #ff4d4f;
+    }
+
+    /* DASHBOARD */
+    #dashboard {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+    }
+    #dashboard header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(255 255 255 / 0.3);
+      user-select: none;
+    }
+    #dashboard header h2 {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+    #logoutBtn {
+      background: #4a7ef5;
+      border: none;
+      border-radius: 14px;
+      padding: 12px 28px;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(74, 126, 245, 0.7);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+    #logoutBtn:hover {
+      background: #3a63d8;
+      box-shadow: 0 8px 28px rgba(58, 99, 216, 0.9);
+      transform: translateY(-2px);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgb(38 77 153 / 0.15);
+      background: white;
+      color: #222;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    thead tr {
+      background: #4a7ef5;
+      color: white;
+      user-select: none;
+    }
+    th, td {
+      padding: 16px 22px;
+      text-align: left;
+      border-bottom: 1px solid #d0d9ff;
+      vertical-align: middle;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    tbody tr:hover {
+      background: #e6f0ff;
+      cursor: default;
+    }
+    tbody tr:nth-child(even) {
+      background: #f6faff;
+    }
+    img.foto {
+      max-width: 100px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 0 14px rgba(74, 126, 245, 0.4);
+    }
+    .loading {
+      text-align: center;
+      padding: 50px 0;
+      font-size: 1.3rem;
+      color: #555;
+      font-style: italic;
+    }
+    @media (max-width: 1000px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      tr {
+        margin-bottom: 25px;
+        background: white;
+        border-radius: 18px;
+        box-shadow: 0 0 25px rgba(74, 126, 245, 0.15);
+        padding: 20px;
+      }
+      td {
+        border: none;
+        padding-left: 55%;
+        position: relative;
+        text-align: right;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #2a5298;
+      }
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 800;
+        color: #4a7ef5;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+      }
+      img.foto {
+        max-width: 100%;
+        margin-bottom: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <!-- LOGIN -->
+    <section id="login-section">
+      <h1>Área Administrativa</h1>
+      <div id="error" class="error-msg">Senha incorreta! Tente novamente.</div>
+      <input id="pass" type="password" placeholder="Digite a senha" autocomplete="current-password" />
+      <button id="btnLogin">Entrar</button>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard">
+      <header>
+        <h2>Painel Administrativo - Feirantes SADE</h2>
+        <button id="logoutBtn">Sair</button>
+      </header>
+      <main>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>Nascimento</th>
+              <th>Box</th>
+              <th>Produto</th>
+              <th>WhatsApp</th>
+              <th>Foto</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr><td colspan="8" class="loading">Carregando dados...</td></tr>
+          </tbody>
+        </table>
+      </main>
+    </section>
+  </div>
+
+  <script>
+    const passField = document.getElementById('pass');
+    const errorDiv = document.getElementById('error');
+    const loginSection = document.getElementById('login-section');
+    const dashboardSection = document.getElementById('dashboard');
+    const tbody = document.getElementById('tbody');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const btnLogin = document.getElementById('btnLogin');
+
+    function checkLogin() {
+      return localStorage.getItem('loggedIn') === 'true';
+    }
+
+    function showDashboard() {
+      loginSection.style.display = 'none';
+      dashboardSection.style.display = 'flex';
+      fetchFeirantes();
+    }
+
+    function showLogin() {
+      loginSection.style.display = 'flex';
+      dashboardSection.style.display = 'none';
+      errorDiv.style.display = 'none';
+      passField.value = '';
+    }
+
+    btnLogin.addEventListener('click', () => {
+      const pass = passField.value.trim();
+      if (pass === 'SADE2025') {
+        localStorage.setItem('loggedIn', 'true');
+        errorDiv.style.display = 'none';
+        showDashboard();
+      } else {
+        errorDiv.style.display = 'block';
+      }
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('loggedIn');
+      showLogin();
+    });
+
+    async function fetchFeirantes() {
+      tbody.innerHTML = '<tr><td colspan="8" class="loading">Carregando dados...</td></tr>';
+      try {
+        const res = await fetch('/admin/feirantes');
+        if (!res.ok) throw new Error(`Erro ao carregar dados: ${res.statusText}`);
+        const data = await res.json();
+        if (data.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">Nenhum cadastro encontrado.</td></tr>';
+          return;
+        }
+        tbody.innerHTML = '';
+        data.forEach(item => {
+          tbody.innerHTML += `
+            <tr>
+              <td data-label="Nome">${item.nome || '-'}</td>
+              <td data-label="CPF">${item.cpf || '-'}</td>
+              <td data-label="Nascimento">${item.nascimento || '-'}</td>
+              <td data-label="Box">${item.box || '-'}</td>
+              <td data-label="Produto">${item.produto || '-'}</td>
+              <td data-label="WhatsApp">${item.whatsapp || '-'}</td>
+              <td data-label="Foto">${item.foto_url ? `<img class="foto" src="${item.foto_url}" alt="Foto">` : 'Sem foto'}</td>
+              <td data-label="Data">${item.data_cadastro ? new Date(item.data_cadastro).toLocaleString() : '-'}</td>
+            </tr>`;
+        });
+      } catch (error) {
+        tbody.innerHTML = `<tr><td colspan="8" style="color: red; text-align:center;">${error.message}</td></tr>`;
+      }
+    }
+
+    window.onload = () => {
+      if (checkLogin()) {
+        showDashboard();
+      } else {
+        showLogin();
+      }
+    };
+  </script>
+</body>
+</html>
