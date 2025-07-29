@@ -6,261 +6,204 @@
   <title>Cadastro Feirantes SADE</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    /* Reset básico */
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    body {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
       font-family: 'Poppins', sans-serif;
-      color: #0d47a1;
+    }
+
+    body {
+      background: #f5f9ff;
+      color: #0a2463;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
     }
+
     .container {
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(13, 71, 161, 0.3);
-      max-width: 700px;
+      background: white;
+      max-width: 600px;
       width: 100%;
-      padding: 40px 50px;
-      position: relative;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(10, 36, 99, 0.15);
+      padding: 30px 40px;
+      transition: box-shadow 0.3s ease;
     }
+    .container:hover {
+      box-shadow: 0 15px 40px rgba(10, 36, 99, 0.3);
+    }
+
     header {
       text-align: center;
       margin-bottom: 30px;
     }
+
     header img {
       width: 120px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
+
     header h1 {
-      font-weight: 700;
-      font-size: 2.5rem;
-      color: #0d47a1;
-      letter-spacing: 1.5px;
-    }
-    label {
-      display: block;
       font-weight: 600;
-      margin-top: 15px;
-      margin-bottom: 5px;
-      color: #0d47a1;
+      font-size: 1.9rem;
+      color: #0a2463;
+      letter-spacing: 1px;
     }
-    input, select {
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: #0a2463;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="tel"],
+    input[type="file"],
+    select {
       width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1.8px solid #1976d2;
-      background: #f7faff;
+      padding: 12px 15px;
+      border: 2px solid #a7c7e7;
+      border-radius: 8px;
       font-size: 1rem;
-      color: #0d47a1;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s ease;
     }
-    input:focus, select:focus {
-      border-color: #0d47a1;
+
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    input[type="tel"]:focus,
+    input[type="file"]:focus,
+    select:focus {
       outline: none;
+      border-color: #0a2463;
+      box-shadow: 0 0 8px rgba(10, 36, 99, 0.4);
     }
-    .checkbox-group, .radio-group {
-      margin-top: 10px;
-      margin-bottom: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
+
+    input[type="file"] {
+      padding: 6px 10px;
     }
-    .checkbox-group label, .radio-group label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 500;
-      color: #0d47a1;
-      cursor: pointer;
-    }
-    input[type="checkbox"], input[type="radio"] {
-      width: 18px;
-      height: 18px;
-      accent-color: #0d47a1;
-      cursor: pointer;
-    }
+
     button {
-      margin-top: 25px;
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(90deg, #0d47a1, #1976d2);
-      border: none;
-      border-radius: 12px;
+      background: #0a2463;
       color: white;
-      font-weight: 700;
-      font-size: 1.2rem;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s ease;
+      box-shadow: 0 5px 15px rgba(10, 36, 99, 0.3);
     }
     button:hover {
-      background: linear-gradient(90deg, #1565c0, #0d47a1);
+      background: #06326f;
+      box-shadow: 0 8px 20px rgba(6, 50, 111, 0.6);
     }
-    /* Responsivo */
-    @media(max-width: 480px) {
+
+    .footer-note {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Responsividade */
+    @media (max-width: 650px) {
       .container {
-        padding: 30px 20px;
-      }
-      header h1 {
-        font-size: 2rem;
+        padding: 25px 20px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <main class="container">
     <header>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Bras%C3%A3o_de_Santo_Ant%C3%B4nio_Descoberto_GO.svg/120px-Bras%C3%A3o_de_Santo_Ant%C3%B4nio_Descoberto_GO.svg.png" alt="Prefeitura Santo Antônio Descoberto - SADE" />
-      <h1>Cadastro Feirantes SADE 2025</h1>
+      <img src="https://scontent-bsb1-1.cdninstagram.com/v/t51.2885-19/472283271_553701134206006_969623140803821636_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-bsb1-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2QHFn0ZMPsp8nun9Ivxq3sCnGfiGonwcWpJyZQzbzj7dFLlYyxiK3jrRW824q9VbdfxOHLkmVsKQ1ivGYZEFFNOn&_nc_ohc=mFl31c878XkQ7kNvwHq8Qmt&_nc_gid=OungBBqNjhBsNgXzZeq4lg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfRCtokVApsJGycQEZ9BZTR0QO4y49cA4cVyVvD3vo8nJQ&oe=688DB776&_nc_sid=8b3546" alt="Logo Prefeitura" />
+      <h1>Cadastro de Feirantes SADE</h1>
     </header>
-    <form id="formCadastro" enctype="multipart/form-data" novalidate>
-      <label for="nome">Nome completo:</label>
-      <input type="text" id="nome" name="nome" required />
 
-      <label for="rgcpf">RG/CPF (somente números):</label>
-      <input type="text" id="rgcpf" name="rgcpf" maxlength="11" inputmode="numeric" required pattern="\d{11}" title="11 números" />
+    <form id="cadastroForm" enctype="multipart/form-data" method="POST">
+      <label for="nome">Nome completo</label>
+      <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo" autocomplete="name" />
 
-      <label for="data_nascimento">Data de nascimento:</label>
-      <input type="date" id="data_nascimento" name="nascimento" required />
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" name="cpf" pattern="\d{11}" required placeholder="Apenas números, 11 dígitos" title="Digite o CPF com 11 números, sem pontos ou traços" />
 
-      <label for="endereco">Endereço essencial:</label>
-      <input type="text" id="endereco" name="endereco" required />
+      <label for="nascimento">Data de nascimento</label>
+      <input type="date" id="nascimento" name="nascimento" required max="<?= new Date().toISOString().split('T')[0] ?>" />
 
-      <label for="telefone">Telefone (somente números):</label>
-      <input type="tel" id="telefone" name="telefone" maxlength="11" inputmode="numeric" required pattern="\d{10,11}" title="10 ou 11 números" />
+      <label for="numero_box">Número do box</label>
+      <input type="text" id="numero_box" name="numero_box" required placeholder="Exemplo: 12" />
 
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" required />
+      <label for="produto">Produto comercializado</label>
+      <input type="text" id="produto" name="produto" required placeholder="Ex: Frutas, verduras, etc." />
 
-      <label for="escolaridade">Escolaridade:</label>
-      <select id="escolaridade" name="escolaridade" required>
-        <option value="" disabled selected>Selecione</option>
-        <option>Fundamental Incompleto</option>
-        <option>Fundamental Completo</option>
-        <option>Médio Incompleto</option>
-        <option>Médio Completo</option>
-        <option>Superior Incompleto</option>
-        <option>Superior Completo</option>
-      </select>
+      <label for="telefone">Telefone/WhatsApp</label>
+      <input type="tel" id="telefone" name="telefone" pattern="\d{10,11}" required placeholder="Somente números, com DDD" title="Digite o telefone com 10 ou 11 dígitos" />
 
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="empreendedor_popular" value="sim" /> Empreendedor popular</label>
-        <label><input type="checkbox" name="ambulante" value="sim" /> Ambulante</label>
-        <label><input type="checkbox" name="banca_feira" value="sim" /> Banca na feira</label>
-        <label><input type="checkbox" name="banca_alugada" value="sim" /> Banca alugada</label>
-      </div>
+      <label for="foto">Foto da banca / produtos</label>
+      <input type="file" id="foto" name="foto" accept="image/*" required />
 
-      <label for="numero_banca">Número da banca:</label>
-      <input type="text" id="numero_banca" name="numero_banca" />
-
-      <label for="feiras_livres">Feiras livres que participa:</label>
-      <input type="text" id="feiras_livres" name="feiras_livres" />
-
-      <label for="possui_cnpj">Possui CNPJ?</label>
-      <select id="possui_cnpj" name="possui_cnpj" required>
-        <option value="" disabled selected>Selecione</option>
-        <option>Sim</option>
-        <option>Não</option>
-      </select>
-
-      <label for="cnpj_numero">Se sim, qual o número do CNPJ?</label>
-      <input type="text" id="cnpj_numero" name="cnpj_numero" maxlength="14" inputmode="numeric" />
-
-      <label for="nome_fantasia">Nome fantasia:</label>
-      <input type="text" id="nome_fantasia" name="nome_fantasia" />
-
-      <label for="ramo_atividade">Ramo de atividade:</label>
-      <select id="ramo_atividade" name="ramo_atividade" required>
-        <option value="" disabled selected>Selecione</option>
-        <option>Comércio de alimentos</option>
-        <option>Vestuário</option>
-        <option>Artigo de cama, mesa e banho</option>
-        <option>Hortifruti</option>
-        <option>Artigos importados</option>
-        <option>Açougue</option>
-        <option>Peixaria</option>
-        <option>Outros</option>
-      </select>
-
-      <label for="tempo_atividade">Há quanto tempo exerce essa atividade?</label>
-      <input type="text" id="tempo_atividade" name="tempo_atividade" />
-
-      <fieldset class="radio-group">
-        <legend>O local é:</legend>
-        <label><input type="radio" name="local_atividade" value="Fixo" required /> Fixo</label>
-        <label><input type="radio" name="local_atividade" value="Rotativo" required /> Rotativo</label>
-      </fieldset>
-
-      <label><input type="checkbox" name="interesse_cursos" value="sim" /> Interesse em cursos de desenvolvimento</label>
-
-      <label for="foto">Foto da banca/produtos:</label>
-      <input type="file" name="foto" id="foto" accept="image/*" required />
-
-      <button type="submit">Enviar Cadastro</button>
+      <button type="submit">Enviar cadastro</button>
     </form>
-  </div>
+
+    <p class="footer-note">* Todos os campos são obrigatórios.</p>
+  </main>
 
   <script>
-    const form = document.getElementById('formCadastro');
+    // Ajusta o atributo max da data para hoje (para não aceitar datas futuras)
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputData = document.getElementById('nascimento');
+      const hoje = new Date().toISOString().split('T')[0];
+      inputData.setAttribute('max', hoje);
+    });
 
+    // Envia formulário via fetch para backend com token na URL
+    const form = document.getElementById('cadastroForm');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Validação extra customizada
-      const rgcpf = form.rgcpf.value.trim();
-      const telefone = form.telefone.value.trim();
-      const possuiCnpj = form.possui_cnpj.value;
-      const cnpj = form.cnpj_numero.value.trim();
-
-      if (!/^\d{11}$/.test(rgcpf)) {
-        alert('RG/CPF deve conter 11 números.');
-        form.rgcpf.focus();
+      const token = new URLSearchParams(window.location.search).get('token');
+      if (!token) {
+        alert('Token não encontrado na URL!');
         return;
       }
 
-      if (!/^\d{10,11}$/.test(telefone)) {
-        alert('Telefone inválido. Deve conter 10 ou 11 números.');
-        form.telefone.focus();
-        return;
-      }
-
-      if (possuiCnpj === 'Sim' && !/^\d{14}$/.test(cnpj)) {
-        alert('CNPJ inválido. Deve conter 14 números.');
-        form.cnpj_numero.focus();
-        return;
-      }
-
-      // Preparar FormData para envio
       const formData = new FormData(form);
 
-      // Pega token da URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get('token');
-      if (token) formData.append('token', token);
-
       try {
-        const response = await fetch('/api/cadastro', {
+        const response = await fetch(`/api/cadastro?token=${encodeURIComponent(token)}`, {
           method: 'POST',
-          body: formData
+          body: formData,
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-          alert(data.erro || 'Erro ao cadastrar.');
+          alert(data.error || 'Erro ao enviar formulário.');
           return;
         }
 
-        alert(data.mensagem || 'Cadastro realizado com sucesso!');
+        alert('Cadastro realizado com sucesso!');
         form.reset();
-      } catch (error) {
-        alert('Erro na requisição: ' + error.message);
+
+      } catch (err) {
+        alert('Erro na requisição. Tente novamente.');
       }
     });
   </script>
+
 </body>
 </html>
